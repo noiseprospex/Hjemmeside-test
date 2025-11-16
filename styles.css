@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.fa {
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  transform: scale(1.8);
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-instagram {
+  background: #f02a81;
+  color: white;
+}
+
+.fa-youtube {
+  background: #f70000;
+  color: white;
+}
+
+.fa-soundcloud {
+  background: #ff7000;
+  color: white;
+}
+
+.fa-spotify {
+  background: #1ed760;
+  color: white;
+}
