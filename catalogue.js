@@ -1,5 +1,5 @@
 /*
-GODE TAGS:
+TAGS:
 glitchy
 noisy
 harsh
@@ -9,14 +9,27 @@ synthetic
 electronic
 dissonant
 chaotic
+bouncy
 
-Kategorier:
+Categories:
 Noise rap, Cloud rap beats, Experimental trap, Experimental, Psychedelic
 
-*/ //OPDATER: 250, 255 (længere), 326 (remaster)
+*/
 //{path: "assets/beats/wipXXX.mp3", category: "", tags: ""},
 
 let catalogue = [
+    {path: "assets/beats/wip353.mp3", category: "Experimental", tags: "industrial"},
+    {path: "assets/beats/wip350.mp3", category: "Cloud rap beats", tags: "bouncy"},
+    {path: "assets/beats/wip349.mp3", category: "Noise rap", tags: "metallic, chaotic, harsh"},
+    {path: "assets/beats/wip348.mp3", category: "Experimental", tags: "chaotic"},
+    {path: "assets/beats/wip347.mp3", category: "Experimental trap", tags: "bouncy, synthetic, industrial"},
+    {path: "assets/beats/wip346.mp3", category: "Cloud rap beats", tags: "synthetic"},
+    {path: "assets/beats/wip340.mp3", category: "Cloud rap beats", tags: "bouncy"},
+    {path: "assets/beats/wip338.mp3", category: "Experimental trap", tags: "noisy"},
+    {path: "assets/beats/wip335.mp3", category: "Experimental trap", tags: "dissonant, industrial"},
+    {path: "assets/beats/wip334.mp3", category: "Experimental trap", tags: "synthetic, industrial"},
+    {path: "assets/beats/wip333.mp3", category: "Experimental trap", tags: "chaotic, harsh"},
+    {path: "assets/beats/wip331.mp3", category: "Psychedelic", tags: "industrial"},
     {path: "assets/beats/wip330.mp3", category: "Experimental trap", tags: "bouncy, synthetic"},
     {path: "assets/beats/wip329.mp3", category: "Experimental trap", tags: "bouncy, synthetic, chaotic"},
     {path: "assets/beats/wip327.mp3", category: "Experimental trap", tags: ""},
