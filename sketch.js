@@ -18,7 +18,7 @@ function setup() {
 
     bannerHeight = windowWidth*0.4
 
-	createCanvas(windowWidth, windowHeight+catalogue.length*(beatContainerHeight+beatContainerMargin)+beatContainerMargin);
+	createCanvas(windowWidth, bannerHeight+windowHeight*0.1+max(windowWidth,windowHeight)*(175/1908)+catalogue.length*(beatContainerHeight+beatContainerMargin)+beatContainerMargin);
     
     
 
