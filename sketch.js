@@ -2,7 +2,7 @@ let banner, logo;
 let font1;
 let categorySelect;
 let categories;
-let beatContainerHeight, beatContainerWidth, beatContainerMargin;
+let beatContainerHeight, beatContainerWidth, beatContainerMargin, bannerHeight;
 
 let beats = [];
 
@@ -16,15 +16,30 @@ function setup() {
     beatContainerHeight = 60;
     beatContainerMargin = 10;
 
-	createCanvas(windowWidth, banner.height+150+catalogue.length*(beatContainerHeight+beatContainerMargin)+beatContainerMargin);
+    bannerHeight = windowWidth*0.4
+
+	createCanvas(windowWidth, windowHeight+catalogue.length*(beatContainerHeight+beatContainerMargin)+beatContainerMargin);
     
+    
+
     beatContainerWidth = width/2;
     
-    
     initCategories();
-    initCategorySelector();
+
+    drawInterface();
     createBeatSelection();
 }
+
+function windowResized() {
+    bannerHeight = windowWidth*0.4
+
+    createCanvas(windowWidth, windowHeight+catalogue.length*(beatContainerHeight+beatContainerMargin)+beatContainerMargin);
+
+    drawInterface();
+    createBeatSelection();
+}
+
+
 
 class beat {
     constructor(path, category, tags, i) {
@@ -40,12 +55,12 @@ class beat {
     }
 
     show() {
-        let y = 150+banner.height+(beatContainerHeight+beatContainerMargin)*this.i;
+        let y = bannerHeight+windowHeight*0.1+max(windowWidth,windowHeight)*(175/1908)+(beatContainerHeight+beatContainerMargin)*this.i;
         
-        strokeWeight(2); fill(255);
+        strokeWeight(max(windowWidth,windowHeight)*(2/1908)); fill(255);
         rect(width*1/4, y, width/2, beatContainerHeight);
 
-        textSize(18); fill(0); textAlign(LEFT, CENTER);
+        textSize(max(windowWidth,windowHeight)*(18/1908)); fill(0); textAlign(LEFT, CENTER);
         text(this.name, width/2-beatContainerWidth/2+beatContainerMargin, y+beatContainerHeight/2);
 
 
@@ -79,7 +94,6 @@ class beat {
 }
 
 function createBeatSelection() {
-    drawInterface();
 
     clearBeatPlaybacks();
 
@@ -108,50 +122,67 @@ function createBeatSelection() {
 function drawInterface() {
     background(240);
 
-    image(banner, 0, 0);
+    //top menu
+    fill(240); strokeWeight(0);
+    rect(0,0,width,windowHeight*0.1);
+    image(logo,windowWidth*0.01,windowHeight*0.01,windowHeight*0.08,windowHeight*0.08);
 
-    textSize(60); textFont(font1); textAlign(CENTER, CENTER);
-    text3D("Noise by Prospex", width/2, banner.height/2, 2, 1);
+    drawLinkBoxes();
 
-    textSize(20); textFont("Helvetica");
-    text3D("Experimental trap beats", width/2, banner.height/2+50, 2, 1);
+    textAlign(CENTER, CENTER);
+    fill(0); strokeWeight(max(windowWidth,windowHeight)*(1/1908)); textSize(max(windowWidth,windowHeight)*(18/1908));
+    text("Contact me: noiseprospex@gmail.com", windowWidth/2, windowHeight*0.05)
 
-    fill(0); 
-    text("Choose snippet category:", width/2, banner.height+60);
+    //banner
+    image(banner,0, windowHeight*0.1, width, bannerHeight);
 
-    textSize(14);
-    text("This website is for showcasing snippets for beats i made. If you like any of them, save the WIP number and contact me on my socials or gmail.", width/2, banner.height+20)
+    textSize(max(windowWidth,windowHeight)*(60/1908)); 
+    textFont(font1); 
+    text3D("Noise by Prospex", width/2, windowHeight*0.1+bannerHeight*0.5, 2, 1);
 
-    strokeWeight(2);
-    line(width*1/4, banner.height+125, width*3/4, banner.height+125);
+    textSize(max(windowWidth,windowHeight)*(20/1908)); 
+    textFont("Helvetica");
+    text3D("Experimental trap beats", width/2, windowHeight*0.1+bannerHeight*0.5+max(windowWidth,windowHeight)/40, 2, 1);
 
-    drawTopMenu();
+    fill(0);    
+    text("Choose snippet category:", width/2, windowHeight*0.1+bannerHeight+max(windowWidth,windowHeight)/30);
+    
+    textSize(max(windowWidth,windowHeight)*(14/1908));
+    text("This website is for showcasing snippets for beats i made. If you like any of them, save the WIP number and contact me on my socials or gmail.", width/2, windowHeight*0.1+bannerHeight+max(windowWidth,windowHeight)/100)
+
+    strokeWeight(max(windowWidth,windowHeight)*(2/1908));
+    line(width*1/4, windowHeight*0.1+bannerHeight+max(windowWidth,windowHeight)*(150/1908), width*3/4, windowHeight*0.1+bannerHeight+max(windowWidth,windowHeight)*(150/1908));
+
+    initCategorySelector();
 }
 
-function drawTopMenu() {
-    fill(240); strokeWeight(0);
-    rect(0,0,width,100);
+let anchorInstagram,anchorYoutube,anchorSoundcloud,anchorSpotify;
 
-    image(logo,10,10,80,80);
+function drawLinkBoxes() {
+    if(anchorInstagram) {
+        anchorInstagram.remove();
+        anchorYoutube.remove();
+        anchorSoundcloud.remove();
+        anchorSpotify.remove();
+    }
 
-    let anchorInstagram = createA("https://www.instagram.com/noiseprospex/","");
+    let marginX = 5*1.8, marginY = 5*1.8;
+
+    anchorInstagram = createA("https://www.instagram.com/noiseprospex/","");
     anchorInstagram.class("fa fa-instagram");
-    anchorInstagram.position(110,40);
-
-    let anchorYoutube = createA("https://www.youtube.com/@NoiseProspex","");
+    anchorInstagram.position(marginX+windowWidth*0.01+windowHeight*0.1,windowHeight*0.05-marginY);
+    
+    anchorYoutube = createA("https://www.youtube.com/@NoiseProspex","");
     anchorYoutube.class("fa fa-youtube");
-    anchorYoutube.position(110+51,40);
+    anchorYoutube.position(marginX+windowWidth*0.01+windowHeight*0.1+51,windowHeight*0.05-marginY);
 
-    let anchorSoundcloud = createA("https://soundcloud.com/noise-prospex","");
+    anchorSoundcloud = createA("https://soundcloud.com/noise-prospex","");
     anchorSoundcloud.class("fa fa-soundcloud");
-    anchorSoundcloud.position(110+105,40);
+    anchorSoundcloud.position(marginX+windowWidth*0.01+windowHeight*0.1+105,windowHeight*0.05-marginY);
 
-    let anchorSpotify = createA("https://open.spotify.com/artist/5boaCl3zJ17mNdK6gfcgn4?si=MzExQYgsRM67S8t8qZ-FVg","");
+    anchorSpotify = createA("https://open.spotify.com/artist/5boaCl3zJ17mNdK6gfcgn4?si=MzExQYgsRM67S8t8qZ-FVg","");
     anchorSpotify.class("fa fa-spotify");
-    anchorSpotify.position(276,40);
-
-    fill(0); strokeWeight(1); textSize(18);
-    text("Contact me: noiseprospex@gmail.com", width/2, 50)
+    anchorSpotify.position(marginX+windowWidth*0.01+windowHeight*0.1+165,windowHeight*0.05-marginY);
 }
 
 function initCategories() {
@@ -164,15 +195,16 @@ function initCategories() {
 }
 
 function initCategorySelector() {
+    if(categorySelect) categorySelect.remove()
     categorySelect = createSelect();
     
     for(let i = 0; i  < categories.length; i++) {
         categorySelect.option(categories[i]);
     }
 
-    let dropdownWidth = width/4;
-    categorySelect.position(width/2-dropdownWidth/2, banner.height+80);
-    categorySelect.size(dropdownWidth, 30)
+    let dropdownWidth = windowWidth/4;
+    categorySelect.position(windowWidth/2-dropdownWidth/2, bannerHeight+windowHeight*0.1+max(windowWidth,windowHeight)*(100/1908));
+    categorySelect.size(dropdownWidth, max(windowWidth,windowHeight)*(30/1908))
 
     categorySelect.changed(createBeatSelection);
 }
