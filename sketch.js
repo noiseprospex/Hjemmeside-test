@@ -20,8 +20,6 @@ function setup() {
 
 	createCanvas(windowWidth, bannerHeight+windowHeight*0.1+max(windowWidth,windowHeight)*(175/1908)+catalogue.length*(beatContainerHeight+beatContainerMargin)+beatContainerMargin);
     
-    
-
     beatContainerWidth = width/2;
     
     initCategories();
@@ -94,7 +92,6 @@ class beat {
 }
 
 function createBeatSelection() {
-
     clearBeatPlaybacks();
 
     let sel = categorySelect ? categorySelect.value() : "Newest";
